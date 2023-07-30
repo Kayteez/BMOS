@@ -106,9 +106,9 @@
             iconClass += ' ' + prefix + '_no-text';
         }
 
-        if (settings.parentTag == 'a') {
-            settings.parentTag = 'a href="#"';
-        }
+//        if (settings.parentTag == 'a') {
+//            settings.parentTag = 'a href="#"';
+//        }
 
         // create menu bar
         $this.mobileNav.attr('class', prefix + '_nav');

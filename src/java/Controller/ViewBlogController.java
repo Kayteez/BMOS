@@ -6,6 +6,9 @@ package Controller;
 
 import Blog.BlogDAO;
 import Blog.BlogDTO;
+import Category.CategoryDAO;
+import Category.CategoryDTO;
+import Product.DAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,12 +16,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
+import meal.MealPackageDTO;
 
-/**
- *
- * @author Thắng
- */
+
 @WebServlet(name = "ViewBlogController", urlPatterns = {"/ViewBlogController"})
 public class ViewBlogController extends HttpServlet {
 
@@ -33,10 +35,31 @@ public class ViewBlogController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+      response.setContentType("text/html;charset=UTF-8");
         BlogDAO dao = new BlogDAO();
+        CategoryDAO dao_category = new CategoryDAO();
+
         List<BlogDTO> list = dao.getBlog();
-        request.setAttribute("list_blog", list);
+        List<CategoryDTO> list_category = dao_category.readAllCategory();
+         int page, numperpage = 4;
+        int size = list.size();
+        int num = (size % 4 == 0 ? (size / 4) : (size / 4) + 1);
+        String xpage = request.getParameter("ppage");
+        if (xpage == null) {
+            page = 1;
+        } else {
+            page = Integer.parseInt(xpage);
+        }
+        int start, end;
+        start = (page - 1) * numperpage;
+        end = Math.min(page * numperpage, size);
+        List<BlogDTO> listsp = dao.getListByPage(list, start, end);
+
+        HttpSession session = request.getSession();
+        session.setAttribute("page", page);
+        session.setAttribute("num", num);
+        request.setAttribute("list_blog", listsp);
+        request.setAttribute("Category", list_category);
         request.getRequestDispatcher("blog.jsp").forward(request, response);
     }
 

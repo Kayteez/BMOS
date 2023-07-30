@@ -17,10 +17,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 
-/**
- *
- * @author HP
- */
+
 @WebServlet(name = "ShoppingController", urlPatterns = {"/ShoppingController"})
 public class ShoppingController extends HttpServlet {
 

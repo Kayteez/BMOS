@@ -15,12 +15,10 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 
-/**
- *
- * @author 09047
- */
+
 @WebServlet(name = "ViewShopPageController", urlPatterns = {"/ViewShopPageController"})
 public class ViewShopPageController extends HttpServlet {
 
@@ -42,8 +40,23 @@ public class ViewShopPageController extends HttpServlet {
 
             List<DTO> list = dao.getProducts();
             List<CategoryDTO> list_category = dao_category.readAllCategory();
-            
-            request.setAttribute("list_product", list);
+            int page, numperpage = 6;
+            int size = list.size();
+            int num = (size % 6 == 0 ? (size / 6) : (size / 6) + 1);
+            String xpage = request.getParameter("ppage");
+            if (xpage == null) {
+                page = 1;
+            } else {
+                page = Integer.parseInt(xpage);
+            }
+            int start, end;
+            start = (page - 1) * numperpage;
+            end = Math.min(page * numperpage, size);
+            List<DTO> listsp = dao.getListByPage(list, start, end);
+            HttpSession session = request.getSession();
+            session.setAttribute("page", page);
+            session.setAttribute("num", num);
+            request.setAttribute("list_product", listsp);
             request.setAttribute("list_category", list_category);
             request.getRequestDispatcher("shop-page.jsp").forward(request, response);
         }

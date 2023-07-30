@@ -13,10 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-/**
- *
- * @author 09047
- */
+
 @WebServlet(name = "LogoutController", urlPatterns = {"/LogoutController"})
 public class LogoutController extends HttpServlet {
 
@@ -38,7 +35,7 @@ public class LogoutController extends HttpServlet {
             session.invalidate();
 
         } finally {
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("ViewController");
         }
     }
 

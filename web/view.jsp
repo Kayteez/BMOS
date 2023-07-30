@@ -57,46 +57,50 @@
 
 
                         <td>
-                            <input value="${x.title}" type="tetx" name="title">
+                            <input value="${x.title}" type="text" name="title">
                         </td>
 
                         <td>
-                            <input value="${x.quantity}" type="tetx" name="quantity">
+                            <input value="${x.quantity}" type="text" name="quantity">
                         </td>
                         <td>
-                            <input value="${x.price}" type="tetx" name="price">
-                        </td>
-
-                        <td>
-                            <input value="${x.discount_price}" type="tetx" name="discount_price">
+                            <input value="${x.price}" type="text" name="price">
                         </td>
 
                         <td>
-                            <input value="${x.weight}" type="tetx" name="weight">
+                            <input value="${x.discount_price}" type="text" name="discount_price">
                         </td>
 
                         <td>
-                            <input value="${x.thumbnail}" type="tetx" name="thumbnail">
+                            <input value="${x.weight}" type="text" name="weight">
                         </td>
 
                         <td>
-                            <input value="${x.description}" type="tetx" name="description">
+                            <input value="${x.thumbnail}" type="text" name="thumbnail">
+                        </td>
+                        
+                        <td>
+                            <input value="${x.img}" type="text" name="img">
                         </td>
 
                         <td>
-                            <input value="${x.create_at}" type="tetx" name="create_at">
+                            <input value="${x.description}" type="text" name="description">
                         </td>
 
                         <td>
-                            <input value="${x.update_at}" type="tetx" name="update_at">
+                            <input value="${x.create_at}" type="text" name="create_at">
+                        </td>
+
+                        <td>
+                            <input value="${x.update_at}" type="text" name="update_at">
                         </td>
 
                         <td>    
-                            <input value="${x.status}" type="tetx" name="status">
+                            <input value="${x.status}" type="text" name="status">
                         </td>
 
                         <td>
-                            <input value="${x.category_id}" type="tetx" name="category_id">
+                            <input value="${x.category_id}" type="text" name="category_id">
                         </td>
                         <td> 
                             <c:url var="Delete" value="DispatchServlet">

@@ -18,12 +18,12 @@ public class UserDTO {
     private String phone;
     private String address;
     private String status;
-    private int role_id;
+    private String role_id;
 
     public UserDTO() {
     }
 
-    public UserDTO(int userID, String userName, String password, String fullname, String email, String phone, String address, String status, int role_id) {
+    public UserDTO(int userID, String userName, String password, String fullname, String email, String phone, String address, String status, String role_id) {
         this.userID = userID;
         this.userName = userName;
         this.password = password;
@@ -99,11 +99,11 @@ public class UserDTO {
         this.status = status;
     }
 
-    public int getRole_id() {
+    public String getRole_id() {
         return role_id;
     }
 
-    public void setRole_id(int role_id) {
+    public void setRole_id(String role_id) {
         this.role_id = role_id;
     }
 

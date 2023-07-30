@@ -13,14 +13,16 @@ public class CategoryDTO {
     private int category_id;
     private String category_name;
     private boolean status;
+    private String img;
 
     public CategoryDTO() {
     }
 
-    public CategoryDTO(int category_id, String category_name, boolean status) {
+    public CategoryDTO(int category_id, String category_name, boolean status, String img) {
         this.category_id = category_id;
         this.category_name = category_name;
         this.status = status;
+        this.img = img;
     }
 
     public int getCategory_id() {
@@ -45,6 +47,14 @@ public class CategoryDTO {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     

@@ -18,10 +18,6 @@ import java.io.PrintWriter;
 import java.util.List;
 
 
-/**
- *
- * @author HP
- */
 @WebServlet(name = "SearchController", urlPatterns = {"/search"})
 public class SearchController extends HttpServlet {
 

@@ -14,7 +14,7 @@
         <meta name="keywords" content="Ogani, unica, creative, html">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Ogani | Template</title>
+        <title>BMOS-Food for Bird</title>
 
         <!-- Google Font -->
         <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
@@ -40,56 +40,41 @@
         <div class="humberger__menu__overlay"></div>
         <div class="humberger__menu__wrapper">
             <div class="humberger__menu__logo">
-                <a href="#"><img src="img/logo.png" alt=""></a>
+                <a href="#"><img src="img/Bird-logo.png" alt=""></a>
             </div>
             <div class="humberger__menu__cart">
                 <ul>
-                    <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                    <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                    <li><a href="shoping-cart.jsp"><i class="fa fa-shopping-bag"></i> <span>${size}</span></a></li>
                 </ul>
-                <div class="header__cart__price">item: <span>$150.00</span></div>
             </div>
-            <div class="humberger__menu__widget">
-                <div class="header__top__right__language">
-                    <img src="img/language.png" alt="">
-                    <div>English</div>
+            <div class="header__top__right__language">
+                <c:if test="${sessionScope.LOGIN_USER != null}">
+                    <a style="color: #1c1c1c"><i class="fa fa-user"></i>Hello, ${sessionScope.LOGIN_USER.fullname}</a>
                     <span class="arrow_carrot-down"></span>
                     <ul>
-                        <li><a href="#">Spanis</a></li>
-                        <li><a href="#">English</a></li>
+                        <li><a href="userProfile.jsp">View profile</a></li>
+                        <li><a href="OrderHistoryCustomerController?userID=${sessionScope.LOGIN_USER.userID}">History order</a></li>
+                        <li><a href="LogoutController">Log out</a></li>
                     </ul>
-                </div>
-                <div class="header__top__right__auth">
-                    <a href="#"><i class="fa fa-user"></i> Login</a>
-                </div>
-            </div>
-            <nav class="humberger__menu__nav mobile-menu">
+                </c:if>
+                <c:if test="${sessionScope.LOGIN_USER == null}">
+                    <a style="color: #1c1c1c"href="LoginController"><i class="fa fa-user"></i> Login</a>
+                </c:if>   
+            </div>            <nav class="humberger__menu__nav mobile-menu">
                 <ul>
-                    <li class="active"><a href="ViewController">Home</a></li>
-                    <li><a href="ViewShopPageController">Shop</a></li>
-                    <li><a href="#">Pages</a>
-                        <ul class="header__menu__dropdown">
-                            <li><a href="./shop-details.html">Shop Details</a></li>
-                            <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                            <li><a href="./checkout.html">Check Out</a></li>
-                            <li><a href="./blog-details.html">Blog Details</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="ViewController">Home</a></li>
+                    <li class="active"><a href="ViewShopPageController">Products</a></li>
+                    <li><a href="ViewMealPackageController">Meal</a></li>
                     <li><a href="ViewBlogController">Blog</a></li>
-                    <li><a href="./contact.html">Contact</a></li>
+                    <li><a href="./contact.jsp">Contact</a></li>
                 </ul>
             </nav>
             <div id="mobile-menu-wrap"></div>
-            <div class="header__top__right__social">
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-linkedin"></i></a>
-                <a href="#"><i class="fa fa-pinterest-p"></i></a>
-            </div>
+            
             <div class="humberger__menu__contact">
                 <ul>
-                    <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                    <li>Free Shipping for all Order of $99</li>
+                    <li><i class="fa fa-envelope"></i> bmos@gmail.com</li>
+                    
                 </ul>
             </div>
         </div>
@@ -100,33 +85,31 @@
             <div class="header__top">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-6 col-md-6">
                             <div class="header__top__left">
                                 <ul>
-                                    <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                                    <li>Free Shipping for all Order of $99</li>
+                                    <li><i class="fa fa-envelope"></i> bmos@gmail.com</li>
+                                    
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-6 col-md-6">
                             <div class="header__top__right">
-                                <div class="header__top__right__social">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-linkedin"></i></a>
-                                    <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                                </div>
+                                
                                 <div class="header__top__right__language">
-                                    <img src="img/language.png" alt="">
-                                    <div>English</div>
-                                    <span class="arrow_carrot-down"></span>
-                                    <ul>
-                                        <li><a href="#">Spanis</a></li>
-                                        <li><a href="#">English</a></li>
-                                    </ul>
-                                </div>
-                                <div class="header__top__right__auth">
-                                    <a href="#"><i class="fa fa-user"></i> Login</a>
+                                    <c:if test="${sessionScope.LOGIN_USER != null}">
+                                        <a style="color: #1c1c1c"><i class="fa fa-user"></i>Hello, ${sessionScope.LOGIN_USER.fullname}</a>
+                                        <span class="arrow_carrot-down"></span>
+                                        <ul>
+                                            <li><a href="userProfile.jsp">View profile</a></li>
+                                            <li><a href="OrderHistoryCustomerController?userID=${sessionScope.LOGIN_USER.userID}">History order</a></li>
+                                            <li><a href="LogoutController">Log out</a></li>
+                                        </ul>
+                                    </c:if>
+                                    <c:if test="${sessionScope.LOGIN_USER == null}">
+                                        <a style="color: #1c1c1c"href="LoginController"><i class="fa fa-user"></i> Login</a>
+                                        <a style="color: #1c1c1c"href="sign-up-page.jsp"><i class="fa fa-user"></i> Sign up</a>
+                                    </c:if>   
                                 </div>
                             </div>
                         </div>
@@ -137,34 +120,27 @@
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="header__logo">
-                            <a href="ViewController"><img src="img/logo.png" alt=""></a>
+                            <a href="ViewController"><img src="img/Bird-logo.png" alt=""></a>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <nav class="header__menu">
                             <ul>
                                 <li><a href="ViewController">Home</a></li>
-                                <li class="active"><a href="ViewShopPageController">Shop</a></li>
-                                <li><a href="#">Pages</a>
-                                    <ul class="header__menu__dropdown">
-                                        <li><a href="./shop-details.html">Shop Details</a></li>
-                                        <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                        <li><a href="./checkout.html">Check Out</a></li>
-                                        <li><a href="./blog-details.html">Blog Details</a></li>
-                                    </ul>
-                                </li>
+                                <li class="active"><a href="ViewShopPageController">Products</a></li>
+                                <li><a href="ViewMealPackageController">Meal</a></li>
                                 <li><a href="ViewBlogController">Blog</a></li>
-                                <li><a href="./contact.html">Contact</a></li>
+                                <li><a href="./contact.jsp">Contact</a></li>
                             </ul>
                         </nav>
                     </div>
                     <div class="col-lg-3">
                         <div class="header__cart">
+                            <c:set var="size" value="${sessionScope.size}"/>
                             <ul>
-                                <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                                <li><a href="shoping-cart.jsp"><i class="fa fa-shopping-bag"></i> <span>${size}</span></a></li>
                             </ul>
-                            <div class="header__cart__price">item: <span>$150.00</span></div>
+
                         </div>
                     </div>
                 </div>
@@ -183,20 +159,12 @@
                         <div class="hero__categories">
                             <div class="hero__categories__all">
                                 <i class="fa fa-bars"></i>
-                                <span>All departments</span>
+                                <span>Categories</span>
                             </div>
                             <ul>
-                                <li><a href="#">Fresh Meat</a></li>
-                                <li><a href="#">Vegetables</a></li>
-                                <li><a href="#">Fruit & Nut Gifts</a></li>
-                                <li><a href="#">Fresh Berries</a></li>
-                                <li><a href="#">Ocean Foods</a></li>
-                                <li><a href="#">Butter & Eggs</a></li>
-                                <li><a href="#">Fastfood</a></li>
-                                <li><a href="#">Fresh Onion</a></li>
-                                <li><a href="#">Papayaya & Crisps</a></li>
-                                <li><a href="#">Oatmeal</a></li>
-                                <li><a href="#">Fresh Bananas</a></li>
+                                <c:forEach items="${list_category}" var="o">
+                                    <li><a href="SearchByCategoryController?category_id=${o.category_id}">${o.category_name}</a></li>   
+                                    </c:forEach>
                             </ul>
                         </div>
                     </div>
@@ -204,7 +172,7 @@
                         <div class="hero__search">
                             <div class="hero__search__form">
                                 <form action="search">
-                                    <input type="text" placeholder="What do yo u need?" name="searchProduct"> 
+                                    <input type="text" placeholder="What do you need?" name="searchProduct"> 
                                     <button type="submit" class="site-btn">SEARCH</button>
                                 </form>
                             </div>
@@ -213,7 +181,7 @@
                                     <i class="fa fa-phone"></i>
                                 </div>
                                 <div class="hero__search__phone__text">
-                                    <h5>+65 11.188.888</h5>
+                                    <h5>+84 773 840 946</h5>
                                     <span>support 24/7 time</span>
                                 </div>
                             </div>
@@ -225,12 +193,12 @@
         <!-- Hero Section End -->
 
         <!-- Breadcrumb Section Begin -->
-        <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
+        <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb1.jpg">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <div class="breadcrumb__text">
-                            <h2>Organi Shop</h2>
+                            <h2>BMOS</h2>
                             <div class="breadcrumb__option">
                                 <a href="ViewController">Home</a>
                                 <span>Shop</span>
@@ -243,156 +211,172 @@
         <!-- Breadcrumb Section End -->
 
         <!-- Product Section Begin -->
-        <section class="product spad">
+        <section class="product spad" style="padding-bottom: 30px;">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3 col-md-5">
                         <div class="sidebar">
                             <div class="sidebar__item">
-                                <h4>Department</h4>
+                                <h4>Products</h4>
                                 <ul>
-                                    <c:forEach items="${list_category}" var="o">
-                                        <li><a href=""SearchByCategoryController?category_id=${o.category_id}"">${o.category_name}</a></li>   
-                                    </c:forEach>
+                                    <c:forEach items="${Category}" var="o">
+                                        <li><a href="SearchByCategoryController?category_id=${o.category_id}">${o.category_name}</a></li>   
+                                        </c:forEach>
                                 </ul>
                             </div>
+
+
                             <div class="sidebar__item">
-                                <h4>Price</h4>
-                                <div class="price-range-wrap">
-                                    <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-                                         data-min="10" data-max="540">
-                                        <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
-                                        <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                                        <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                                    </div>
-                                    <div class="range-slider">
-                                        <div class="price-input">
-                                            <input type="text" id="minamount">
-                                            <input type="text" id="maxamount">
-                                        </div>
-                                    </div>
-                                </div>
+                                <h4>Birds</h4>
+                                <ul>
+                                    <c:forEach items="${Bird}" var="o">
+                                        <li><a href="SearchProByBirdController?bird_id=${o.bird_id}">${o.name}</a></li>
+                                        </c:forEach>
+                                </ul>
                             </div>
+
+
+                            <!--filter-->
+
+                            <!--                            <div class="sidebar__item">
+                                                            <h4>Price</h4>
+                                                            <div class="price-range-wrap">
+                                                                <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
+                                                                     data-min="10" data-max="540">
+                                                                    <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
+                                                                    <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
+                                                                    <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
+                                                                </div>
+                                                                <div class="range-slider">
+                                                                    <div class="price-input">
+                                                                        <input type="text" id="minamount">
+                                                                        <input type="text" id="maxamount">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>-->
                         </div>
                     </div>
+
+
                     <div class="col-lg-9 col-md-7">
-                        <div class="product__discount">
-                            <div class="section-title product__discount__title">
-                                <h2>Sale Off</h2>
-                            </div>
-                            <div class="row">
-                                <div class="product__discount__slider owl-carousel">
-                                    <div class="col-lg-4">
-                                        <div class="product__discount__item">
-                                            <div class="product__discount__item__pic set-bg"
-                                                 data-setbg="img/product/discount/pd-1.jpg">
-                                                <div class="product__discount__percent">-20%</div>
-                                                <ul class="product__item__pic__hover">
-                                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="product__discount__item__text">
-                                                <span>Dried Fruit</span>
-                                                <h5><a href="#">Raisin’n’nuts</a></h5>
-                                                <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="product__discount__item">
-                                            <div class="product__discount__item__pic set-bg"
-                                                 data-setbg="img/product/discount/pd-2.jpg">
-                                                <div class="product__discount__percent">-20%</div>
-                                                <ul class="product__item__pic__hover">
-                                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="product__discount__item__text">
-                                                <span>Vegetables</span>
-                                                <h5><a href="#">Vegetables’package</a></h5>
-                                                <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="product__discount__item">
-                                            <div class="product__discount__item__pic set-bg"
-                                                 data-setbg="img/product/discount/pd-3.jpg">
-                                                <div class="product__discount__percent">-20%</div>
-                                                <ul class="product__item__pic__hover">
-                                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="product__discount__item__text">
-                                                <span>Dried Fruit</span>
-                                                <h5><a href="#">Mixed Fruitss</a></h5>
-                                                <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="product__discount__item">
-                                            <div class="product__discount__item__pic set-bg"
-                                                 data-setbg="img/product/discount/pd-4.jpg">
-                                                <div class="product__discount__percent">-20%</div>
-                                                <ul class="product__item__pic__hover">
-                                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="product__discount__item__text">
-                                                <span>Dried Fruit</span>
-                                                <h5><a href="#">Raisin’n’nuts</a></h5>
-                                                <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="product__discount__item">
-                                            <div class="product__discount__item__pic set-bg"
-                                                 data-setbg="img/product/discount/pd-5.jpg">
-                                                <div class="product__discount__percent">-20%</div>
-                                                <ul class="product__item__pic__hover">
-                                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="product__discount__item__text">
-                                                <span>Dried Fruit</span>
-                                                <h5><a href="#">Raisin’n’nuts</a></h5>
-                                                <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="product__discount__item">
-                                            <div class="product__discount__item__pic set-bg"
-                                                 data-setbg="img/product/discount/pd-6.jpg">
-                                                <div class="product__discount__percent">-20%</div>
-                                                <ul class="product__item__pic__hover">
-                                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="product__discount__item__text">
-                                                <span>Dried Fruit</span>
-                                                <h5><a href="#">Raisin’n’nuts</a></h5>
-                                                <div class="product__item__price">$30.00 <span>$36.00</span></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <!--                        <div class="product__discount">
+                                                    <div class="section-title product__discount__title">
+                                                        <h2>Sale Off</h2>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="product__discount__slider owl-carousel">
+                                                            <div class="col-lg-4">
+                                                                <div class="product__discount__item">
+                                                                    <div class="product__discount__item__pic set-bg"
+                                                                         data-setbg="img/product/discount/pd-1.jpg">
+                                                                        <div class="product__discount__percent">-20%</div>
+                                                                        <ul class="product__item__pic__hover">
+                                                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="product__discount__item__text">
+                                                                        <span>Dried Fruit</span>
+                                                                        <h5><a href="#">Raisin’n’nuts</a></h5>
+                                                                        <div class="product__item__price">$30.00 <span>$36.00</span></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <div class="product__discount__item">
+                                                                    <div class="product__discount__item__pic set-bg"
+                                                                         data-setbg="img/product/discount/pd-2.jpg">
+                                                                        <div class="product__discount__percent">-20%</div>
+                                                                        <ul class="product__item__pic__hover">
+                                                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="product__discount__item__text">
+                                                                        <span>Vegetables</span>
+                                                                        <h5><a href="#">Vegetables’package</a></h5>
+                                                                        <div class="product__item__price">$30.00 <span>$36.00</span></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <div class="product__discount__item">
+                                                                    <div class="product__discount__item__pic set-bg"
+                                                                         data-setbg="img/product/discount/pd-3.jpg">
+                                                                        <div class="product__discount__percent">-20%</div>
+                                                                        <ul class="product__item__pic__hover">
+                                                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="product__discount__item__text">
+                                                                        <span>Dried Fruit</span>
+                                                                        <h5><a href="#">Mixed Fruitss</a></h5>
+                                                                        <div class="product__item__price">$30.00 <span>$36.00</span></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <div class="product__discount__item">
+                                                                    <div class="product__discount__item__pic set-bg"
+                                                                         data-setbg="img/product/discount/pd-4.jpg">
+                                                                        <div class="product__discount__percent">-20%</div>
+                                                                        <ul class="product__item__pic__hover">
+                                                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="product__discount__item__text">
+                                                                        <span>Dried Fruit</span>
+                                                                        <h5><a href="#">Raisin’n’nuts</a></h5>
+                                                                        <div class="product__item__price">$30.00 <span>$36.00</span></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <div class="product__discount__item">
+                                                                    <div class="product__discount__item__pic set-bg"
+                                                                         data-setbg="img/product/discount/pd-5.jpg">
+                                                                        <div class="product__discount__percent">-20%</div>
+                                                                        <ul class="product__item__pic__hover">
+                                                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="product__discount__item__text">
+                                                                        <span>Dried Fruit</span>
+                                                                        <h5><a href="#">Raisin’n’nuts</a></h5>
+                                                                        <div class="product__item__price">$30.00 <span>$36.00</span></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <div class="product__discount__item">
+                                                                    <div class="product__discount__item__pic set-bg"
+                                                                         data-setbg="img/product/discount/pd-6.jpg">
+                                                                        <div class="product__discount__percent">-20%</div>
+                                                                        <ul class="product__item__pic__hover">
+                                                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="product__discount__item__text">
+                                                                        <span>Dried Fruit</span>
+                                                                        <h5><a href="#">Raisin’n’nuts</a></h5>
+                                                                        <div class="product__item__price">$30.00 <span>$36.00</span></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>-->
                         <div class="filter__item">
                             <div class="row">
                                 <div class="col-lg-4 col-md-5">
@@ -405,9 +389,9 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-4">
-                                    <div class="filter__found">
-                                        <h6><span>16</span> Products found</h6>
-                                    </div>
+                                    <!--                                    <div class="filter__found">
+                                                                            <h6><span>16</span> Products found</h6>
+                                                                        </div>-->
                                 </div>
                             </div>
                         </div>
@@ -417,81 +401,56 @@
                                     <div class="product__item">
                                         <div class="product__item__pic set-bg" data-setbg="img/food/${o.thumbnail}">
                                             <ul class="product__item__pic__hover">
-                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+<!--                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>-->
+                                                <li><a href="https://www.google.com/search?q=${o.title} for bird"><i class="fa fa-retweet"></i></a></li>
                                                 <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                                             </ul>
                                         </div>
                                         <div class="product__item__text">
                                             <h6><a href="DetailProductController?product_id=${o.product_id}">${o.title}</a></h6>
-                                            <h5>${o.price}</h5>
+                                            <h5>${o.getFormattedPrice()} VND</h5>
                                         </div>
                                     </div>
                                 </div>
                             </c:forEach>
                         </div>
-                        <div class="product__pagination">
-                            <a href="#">1</a>
-                            <a href="#">2</a>
-                            <a href="#">3</a>
-                            <a href="#"><i class="fa fa-long-arrow-right"></i></a>
-                        </div>
                     </div>
                 </div>
             </div>
         </section>
+        <c:set var="page" value="${sessionScope.page}"/>
+        <div class="product__pagination" align="center" style="
+             padding-bottom: 50px;
+             margin-bottom: 50px;
+             ">
+            <c:forEach begin="${1}" end="${sessionScope.num}" var="i">
+                <a href="ViewShopPageController?ppage=${i}">${i}</a>                  
+            </c:forEach>
+            <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+        </div>
         <!-- Product Section End -->
 
         <!-- Footer Section Begin -->
         <footer class="footer spad">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="footer__about">
                             <div class="footer__about__logo">
-                                <a href="ViewController"><img src="img/logo.png" alt=""></a>
+                                <a href="ViewController"><img src="img/Bird-logo.png" alt=""></a>
                             </div>
-                            <ul>
-                                <li>Address: 60-49 Road 11378 New York</li>
-                                <li>Phone: +65 11.188.888</li>
-                                <li>Email: hello@colorlib.com</li>
-                            </ul>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
-                        <div class="footer__widget">
-                            <h6>Useful Links</h6>
-                            <ul>
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">About Our Shop</a></li>
-                                <li><a href="#">Secure Shopping</a></li>
-                                <li><a href="#">Delivery infomation</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Our Sitemap</a></li>
-                            </ul>
-                            <ul>
-                                <li><a href="#">Who We Are</a></li>
-                                <li><a href="#">Our Services</a></li>
-                                <li><a href="#">Projects</a></li>
-                                <li><a href="#">Contact</a></li>
-                                <li><a href="#">Innovation</a></li>
-                                <li><a href="#">Testimonials</a></li>
-                            </ul>
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="footer__about">
+                            <div>Address: Lô E2a-7, Đường D1, Khu Công nghệ cao, P.Long Thạnh Mỹ, Tp. Thủ Đức, TP.HCM.</div>    
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="footer__widget">
-                            <h6>Join Our Newsletter Now</h6>
-                            <p>Get E-mail updates about our latest shop and special offers.</p>
-                            <form action="#">
-                                <input type="text" placeholder="Enter your mail">
-                                <button type="submit" class="site-btn">Subscribe</button>
-                            </form>
-                            <div class="footer__widget__social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-pinterest"></i></a>
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="footer__about">
+                            <div class="footer__about__logo text-lg-right">
+                                <div>Phone: +84 773 840 946</div>
+                                <div>Email: bmos@gmail.com</div>
                             </div>
                         </div>
                     </div>
@@ -500,16 +459,14 @@
                     <div class="col-lg-12">
                         <div class="footer__copyright">
                             <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
-                            <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>
+                                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> BMOS | Bird Order Meal System <i class="fa fa-heart" aria-hidden="true"></i> by <a href="#" target="_blank">BMOS</a></div>
+                            
                         </div>
                     </div>
                 </div>
             </div>
         </footer>
         <!-- Footer Section End -->
-
         <!-- Js Plugins -->
         <script src="js/jquery-3.3.1.min.js"></script>
         <script src="js/bootstrap.min.js"></script>

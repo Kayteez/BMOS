@@ -45,9 +45,10 @@ public class CategoryDAO {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 int category_id = rs.getInt("category_id");
-                String category_name = rs.getString("name");
+                String category_name = rs.getString("name"); 
                 boolean status = rs.getBoolean("status");
-                CategoryDTO item = new CategoryDTO(category_id, category_name, status);
+                String img = rs.getString("img");
+                CategoryDTO item = new CategoryDTO(category_id, category_name, status, img);
                 listCategory.add(item);
             }
         } catch (Exception e) {
@@ -119,13 +120,15 @@ public class CategoryDAO {
             while (rs.next()) {
                 return new CategoryDTO(rs.getInt(1),
                         rs.getString(2),
-                        rs.getBoolean(3));
+                        rs.getBoolean(3),
+                        rs.getString(4));
             }
         } catch (Exception e) {
         }
 
         return null;
     }
+    
     public int getTotalCategory(){       
         try {
             String sql = "select count(*) from tbl_Category";
@@ -138,6 +141,7 @@ public class CategoryDAO {
         }
         return 0;
     }
+    
     public static void main(String[] args) {
         CategoryDAO dao = new CategoryDAO();
         List <CategoryDTO> list = dao.readAllCategory();

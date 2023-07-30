@@ -13,11 +13,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
 
-/**
- *
- * @author 09047
- */
+
 @WebServlet(name = "DetailProductController", urlPatterns = {"/DetailProductController"})
 public class DetailProductController extends HttpServlet {
 

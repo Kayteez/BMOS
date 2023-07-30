@@ -4,12 +4,16 @@
  */
 package Controller;
 
+import Bird.BirdDAO;
+import Bird.BirdDTO;
 import Blog.BlogDAO;
 import Blog.BlogDTO;
 import Category.CategoryDAO;
 import Category.CategoryDTO;
 import Product.DAO;
 import Product.DTO;
+import User.UserDAO;
+import User.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -17,12 +21,12 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
+import meal.MealPackageDAO;
+import meal.MealPackageDTO;
 
-/**
- *
- * @author Thắng
- */
+
 @WebServlet(name = "ViewController", urlPatterns = {"/ViewController"})
 public class ViewController extends HttpServlet {
 
@@ -38,19 +42,44 @@ public class ViewController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try {
             DAO dao = new DAO();
             BlogDAO dao_blog = new BlogDAO();
             CategoryDAO dao_category = new CategoryDAO();
-
+            BirdDAO dao_bird = new BirdDAO();
+           
+            
             List<DTO> list = dao.getProducts();
             List<BlogDTO> list_blog = dao_blog.getBlog();
             List<CategoryDTO> list_category = dao_category.readAllCategory();
-
-            request.setAttribute("Product", list);
-            request.setAttribute("Blog", list_blog);
-            request.setAttribute("Category", list_category);
-
+            List<BirdDTO> list_bird = dao_bird.getBird();
+          
+            //For Product
+            int page, numperpage = 8;
+            int size = list.size();
+            int num = (size % 8 == 0 ? (size / 8) : (size / 8) + 1);
+            String xpage = request.getParameter("ppage");
+            if (xpage == null) {
+                page = 1;
+            } else {
+                page = Integer.parseInt(xpage);
+            }
+            int start, end;
+            start = (page - 1) * numperpage;
+            end = Math.min(page * numperpage, size);
+            List<DTO> listsp = dao.getListByPage(list, start, end);
+            HttpSession session = request.getSession();
+            session.setAttribute("page", page);
+            session.setAttribute("num", num);
+            session.setAttribute("Product", listsp);
+            session.setAttribute("Blog", list_blog);
+            session.setAttribute("Category", list_category);
+            session.setAttribute("Bird", list_bird);
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
             request.getRequestDispatcher("home.jsp").forward(request, response);
         }
     }

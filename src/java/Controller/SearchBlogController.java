@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import Bird.BirdDAO;
 import Blog.BlogDAO;
 import Blog.BlogDTO;
 import java.io.IOException;
@@ -13,12 +14,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 
-/**
- *
- * @author 09047
- */
 @WebServlet(name = "SearchBlogController", urlPatterns = {"/SearchBlogController"})
 public class SearchBlogController extends HttpServlet {
 
@@ -35,12 +33,18 @@ public class SearchBlogController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String searchBlog = request.getParameter("searchBlog");
+//        String search = request.getParameter("category_id");
 
+//        String search_Blog = request.getParameter("bird_id");
+//        BirdDAO dao_blog = new BirdDAO();
+//        List<BlogDTO> list_blog = dao_blog.getBlogByBird(search_Blog);
+//        request.setAttribute("list_blog", list_blog);
         BlogDAO dao = new BlogDAO();
         List<BlogDTO> listBlog = dao.getBlogByName(searchBlog);
-
-        request.setAttribute("list_blog", listBlog);
-
+//        List<BlogDTO> list = dao.getBlogByCategory(search);
+        HttpSession session = request.getSession();
+        session.setAttribute("list_blog", listBlog);
+//        request.setAttribute("list_blog", list);
         request.getRequestDispatcher("blog.jsp").forward(request, response);
     }
 
